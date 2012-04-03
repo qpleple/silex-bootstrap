@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block container_content %}
+<table class="table table-bordered">
+    {% for item in data %}
+        <tr>
+           <td>{{ item.a }}</td>
+           <td>{{ item.b }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
