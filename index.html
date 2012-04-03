@@ -7,6 +7,8 @@
     <meta name="description" content="Silex Bootstrap : All you need in a nutshell" />
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="stylesheets/blackboard.css">
+        
 
     <title>Silex Bootstrap</title>
   </head>
@@ -31,32 +33,59 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h3>What's inside?</h3>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+Silex Bootstrap is nothing more than Silex with some stuff already set up for you:
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<ul>
+    <li>Twitter bootstrap</li>
+    <li>HTML5 Boilerplate</li>
+    <li>Template rendering with Twig</li>
+    <li>Database interface with Doctrine</li>
+    <li>Directory structure for your project</li>
+</ul>
 
-<h3>Designer Templates</h3>
+Here is the example controller included in the sources.
+<pre data-language="php">$app->get('/', function() use ($app){
+    // Doctrine for database operations
+    $app['db.dumb']->insert(array('a' => rand(), 'b' => rand()));
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+    $data = $app['db.dumb']->findAll();
 
-<h3>Rather Drive Stick?</h3>
+    // Twig for template rendering
+    return $app['twig']->render('index.html.twig', array('data' => $data));
+});
+</pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+And the template.
+<pre data-language="html">{% extends &#x27;layout.html.twig&#x27; %}
 
-<h3>Authors and Contributors</h3>
+{% block container_content %}
+    &lt;table class=&quot;table table-bordered&quot;&gt;
+        {% for item in data %}
+            &lt;tr&gt;
+               &lt;td&gt;{{ item.a }}&lt;/td&gt;
+               &lt;td&gt;{{ item.b }}&lt;/td&gt;
+            &lt;/tr&gt;
+        {% endfor %}
+    &lt;/table&gt;
+{% endblock %}
+</pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<h3>Usage</h3>
 
-<h3>Support or Contact</h3>
+To start a new project with Silex Bootstrap, just download it, install composer and the dependencies.
+<pre data-language="shell">$ cd silex-bootstrap
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact support@github.com and we’ll help you sort it out.</p>
+# Install composer
+$ curl -s http://getcomposer.org/installer | php
+
+# Install the dependencies
+$ composer.phar install
+</pre>
+Edit the database parameters in <code data-language="shell">/src/bootstrap.php</code> and you are done!
+
       </section>
     </div>
 
@@ -64,11 +93,11 @@ $ git checkout gh-pages
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         <p class="copyright">Silex Bootstrap maintained by <a href="https://github.com/qpleple">qpleple</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
     
+    <script src="javascripts/rainbow-custom.min.js"></script>
 
   </body>
 </html>
