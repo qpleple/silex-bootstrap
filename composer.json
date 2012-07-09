@@ -1,4 +1,5 @@
 {
+    "minimum-stability": "dev",,
     "require": {
         "silex/silex": "1.*",
         "twig/twig": "1.6.0",
