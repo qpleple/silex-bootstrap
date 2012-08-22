@@ -1,4 +1,6 @@
 <IfModule mod_rewrite.c>
+    SetEnv APPLICATION_ENV development
+
     Options -MultiViews
 
     RewriteEngine On
