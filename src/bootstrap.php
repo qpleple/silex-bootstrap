@@ -6,6 +6,8 @@ use Silex\Provider\TwigServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
 use Repository\DumbRepository;
 
+$config = parse_ini_file(__DIR__.'/config.ini', TRUE);
+
 $app = new Silex\Application();
 
 $app['debug'] = true;
@@ -18,16 +20,16 @@ $app->register(new TwigServiceProvider(), array(
 $app->register(new DoctrineServiceProvider);
 
 $app['db.options'] = array(
-    'driver'   => 'pdo_mysql',
-    'dbname'   => 'dumb',
-    'host'     => 'localhost',
-    'user'     => 'root',
-    'password' => 'root',
+    'driver'   => $config['db.driver'],
+    'dbname'   => $config['db.dbname'],
+    'host'     => $config['db.host'],
+    'user'     => $config['db.user'],
+    'password' => $config['db.password'],
 );
 
 $app->before(function() use ($app) {
     $app['db.dumb'] = $app->share(function($app) {
-        return new DumbRepository($app['db']); 
+        return new DumbRepository($app['db']);
     });
 });
 
