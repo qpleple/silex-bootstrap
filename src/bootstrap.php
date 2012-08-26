@@ -7,8 +7,8 @@ use Silex\Provider\DoctrineServiceProvider;
 use Repository\DumbRepository;
 
 $env = getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production';
-$config = parse_ini_file(__DIR__.'/config.ini', TRUE);
-$config = $config[$env];
+$ini_config = parse_ini_file(__DIR__.'/config.ini', TRUE);
+$config = $ini_config[$env];
 
 $app = new Silex\Application();
 
