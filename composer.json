@@ -1,12 +1,12 @@
 {
-    "minimum-stability": "dev",
-    "require": {
-        "silex/silex": "1.*",
-        "twig/twig": "1.6.0",
-        "doctrine/dbal": "2.2.*",
-        "doctrine/common": "2.2.*"
+    "minimum-stability" : "stable",
+    "require"           : {
+        "silex/silex"     : "1.*@dev",
+        "twig/twig"       : "1.*",
+        "doctrine/dbal"   : "2.*",
+        "doctrine/common" : "2.*"
     },
-    "autoload": {
+    "autoload"          : {
         "psr-0": { "Repository": "src/"}
     }
 }
