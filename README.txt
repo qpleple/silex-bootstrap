@@ -1,1 +1,1 @@
-see http://qpleple.github.com/silex-bootstrap
+Project Deprecated. Silex has changed a lot.
